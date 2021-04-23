@@ -3,9 +3,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 # from denseUnet import denseUnet
-from Resatten import ResUnet
+from model.Resatten import ResUnet
 # from denseUnet3d import denseUnet3d
-from DMFNet_16x import DMFNet
+from model.DMFNet_16x import DMFNet
 
 device = 'cuda'
 

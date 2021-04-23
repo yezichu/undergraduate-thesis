@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from conv_block import conv_block, conv_block3d
+from model.conv_block import conv_block, conv_block3d
 
 
 class dense_block(nn.Module):

@@ -1,9 +1,9 @@
 import torch.nn as nn
 from torch import cat
-from Scale import Scale3d
+from model.Scale import Scale3d
 from collections import OrderedDict
-from dense_block import dense_block3d
-from _Transition import _Transition3d
+from model.dense_block import dense_block3d
+from model._Transition import _Transition3d
 # from attention import Attention_3dblock
 
 

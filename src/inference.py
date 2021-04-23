@@ -4,7 +4,7 @@ from model.H_Resunet import H_Resunet
 import numpy as np
 from torch.utils.data import DataLoader
 import SimpleITK as sitk
-from BratsDataset import BratsDataset
+from model.BratsDataset import BratsDataset
 import torch
 from tqdm import tqdm
 import pandas as pd

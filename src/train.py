@@ -1,7 +1,7 @@
 from Trainer import Trainer
-from BratsDataset import BratsDataset
+from Dataset.BratsDataset import BratsDataset
 from model.H_Resunet import H_ResUnet
-from loss_metric import BCEDiceLoss
+from loss.loss_metric import BCEDiceLoss
 from torchvision import transforms
 from Dataset.color_augmentations import RandomIntensityScale, RandomIntensityShift, RandomGaussianNoise
 from Dataset.spatial_augmentations import RandomMirrorFlip, RandomRotation90

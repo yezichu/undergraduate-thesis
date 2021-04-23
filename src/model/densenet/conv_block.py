@@ -1,4 +1,4 @@
-from Scale import Scale, Scale3d
+from model.Scale import Scale, Scale3d
 import torch.nn.functional as F
 import torch.nn as nn
 

@@ -1,10 +1,10 @@
 import torch.nn as nn
 from torch import cat
-from Scale import Scale
+from model.Scale import Scale
 from collections import OrderedDict
-from dense_block import dense_block
-from _Transition import _Transition
-from attention import Attention_2dblock
+from model.dense_block import dense_block
+from model._Transition import _Transition
+from model.attention import Attention_2dblock
 
 
 class denseUnet(nn.Module):

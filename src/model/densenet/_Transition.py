@@ -1,5 +1,5 @@
 import torch.nn as nn
-from Scale import Scale, Scale3d
+from model.Scale import Scale, Scale3d
 
 
 class _Transition(nn.Sequential):

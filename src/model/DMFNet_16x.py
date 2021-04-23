@@ -3,7 +3,7 @@ import torch.nn.functional as F
 import torch
 
 try:
-    from sync_batchnorm import SynchronizedBatchNorm3d
+    from model.sync_batchnorm import SynchronizedBatchNorm3d
 except:
     pass
 

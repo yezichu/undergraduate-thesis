@@ -9,7 +9,7 @@ Here are the four modes of the image and its mask
 
 # Training
 
-First,the image is cropped into patches.Run`srrunc/partition.ipy`,change the storage address of training set, verification set and test set successively.
+First,the image is cropped into patches.Run`src/partition.py`,change the storage address of training set, verification set and test set successively.
 
 ```python
 train_brats_path = "your-Path_to/MICCAI_BraTS_2020_Data_Training"

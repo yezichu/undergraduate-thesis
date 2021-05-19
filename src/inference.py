@@ -15,6 +15,14 @@ nodel = H_Resunet(80).to('cuda')
 
 
 def GetPatchPosition(PatchPath):
+    """Get the image name and number.
+
+    Args:
+        PatchPath (str): The path to store the image.
+
+    Returns:
+        [type]: Return name and number.
+    """
     npName = os.path.basename(PatchPath)
     firstName = npName
     overNum = npName.find(".npy")
@@ -86,17 +94,14 @@ with torch.no_grad():
             OneWT = np.zeros([180, 180, 180], dtype=np.uint8)
             OneTC = np.zeros([180, 180, 180], dtype=np.uint8)
             OneET = np.zeros([180, 180, 180], dtype=np.uint8)
-            # 创建三个全黑的三维矩阵，分别用于真实的WT、TC、ET分块的拼接
             OneWTMask = np.zeros([180, 180, 180], dtype=np.uint8)
             OneTCMask = np.zeros([180, 180, 180], dtype=np.uint8)
             OneETMask = np.zeros([180, 180, 180], dtype=np.uint8)
             for i in range(27):
-                #output=predicts[i]
                 mask = masks[i]
                 image = predicts[i]
                 mask = mask.squeeze(0)
                 image = image.squeeze(0)
-                #print(mask.shape)
                 for idz in range(10, mask.shape[1] - 10):
                     for idx in range(10, mask.shape[2] - 10):
                         for idy in range(10, mask.shape[3] - 10):

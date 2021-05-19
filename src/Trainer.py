@@ -41,12 +41,6 @@ class Trainer:
 
         self.scheduler = torch.optim.lr_scheduler.LambdaLR(
             self.optimizer, lr_lambda=self.warm_up_with_cosine_lr)
-        """
-        self.scheduler = ReduceLROnPlateau(self.optimizer,
-                                           mode="min",
-                                           patience=2,
-                                           verbose=True)
-        """
         self.accumulation_steps = accumulation_steps // batch_size
         self.phases = ["train", "validation"]
 
@@ -123,7 +117,6 @@ class Trainer:
         self.sens_scores[phase].append(epoch_sens)
         self.spec_scores[phase].append(epoch_spec)
         self.accu_scores[phase].append(epoch_accu)
-        #self.haus_scores[phase].append(epoch_haus)
         return epoch_loss
 
     def run(self):
@@ -141,7 +134,6 @@ class Trainer:
                 print(f"\n{'#'*20}\nSaved new checkpoint\n{'#'*20}\n")
                 self.best_loss = val_loss
                 torch.save(self.net.state_dict(), "best_model.pth")
-            # torch.save(self.net.state_dict(), str(epoch)+"_epoch_model.pth")
             torch.save(self.net.state_dict(),
                        str(epoch + 16) + "_epoch_model.pth")
         self._save_train_history()

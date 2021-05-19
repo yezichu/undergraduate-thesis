@@ -24,11 +24,9 @@ class H_ResUnet(nn.Module):
         self.finalBn = nn.GroupNorm(num_groups=4, num_channels=64)
         self.finalAc = nn.ReLU(inplace=True)
         self.finalConv3d2 = nn.Conv3d(64, 3, (1, 1, 1))
-        # self.softmax = nn.Softmax(dim=1)
+
 
     def forward(self, x):
-        # x = x[0:1, :, :, :, :]
-        # print("x shape : ", x.shape)
         x1 = x.clone().squeeze(0)
         x1 = x1.permute(1, 0, 2, 3)
         """
@@ -49,7 +47,6 @@ class H_ResUnet(nn.Module):
         # input2d = input2d[:, :, :, :, 0]
         # input2d = input2d.permute(0, 3, 1, 2)
         """
-
         feature2d = self.dense2d(x1)
         final2d = self.conv2d5(feature2d)
 
@@ -57,16 +54,10 @@ class H_ResUnet(nn.Module):
         feature2d = feature2d.clone().permute(1, 0, 2, 3)
         input3d1 = input3d.unsqueeze(0)
         feature2d = feature2d.unsqueeze(0)
-
         x_tmp = x.clone()
-
         input3d = torch.cat((input3d1, x_tmp), 1)
-
         feature3d = self.dense3d(input3d)
-        # output3d = self.conv3d5(feature3d)
-
         final = torch.add(feature2d, feature3d) / 2
-
         finalout = self.finalConv3d1(final)
         if (self.drop > 0):
             finalout = F.dropout(finalout, p=self.drop)

@@ -7,12 +7,22 @@ import warnings
 warnings.simplefilter("ignore")
 
 
-# helper functions for testing.
 def dice_coef_metric_per_classes(
         probabilities: np.ndarray,
         truth: np.ndarray,
         eps: float = 1e-9,
         classes: list = ['WT', 'TC', 'ET']) -> np.ndarray:
+    """Calculate the dice for per classes.
+
+    Args:
+        probabilities (torch.Tensor): Predicted image.
+        truth (torch.Tensor): The real image.
+        eps (float, optional): Prevent divisor 0. Defaults to 1e-9.
+        classes (list, optional): [description]. Defaults to ['WT', 'TC', 'ET'].
+
+    Returns:
+        np.ndarray: Return dice score.
+    """
     scores = {key: list() for key in classes}
     num_classes = probabilities.shape[0]
     predictions = probabilities
@@ -36,6 +46,17 @@ def jaccard_coef_metric_per_classes(
         truth: np.ndarray,
         eps: float = 1e-9,
         classes: list = ['WT', 'TC', 'ET']) -> np.ndarray:
+    """Calculate the jaccard for per classes.
+
+    Args:
+        probabilities (torch.Tensor): Predicted image.
+        truth (torch.Tensor): The real image.
+        eps (float, optional): Prevent divisor 0. Defaults to 1e-9.
+        classes (list, optional): [description]. Defaults to ['WT', 'TC', 'ET'].
+
+    Returns:
+        np.ndarray: Return jaccard score.
+    """
     scores = {key: list() for key in classes}
     num_classes = probabilities.shape[0]
     predictions = probabilities
@@ -59,6 +80,17 @@ def sensitivity_metric_per_classes(
         truth: np.ndarray,
         eps: float = 1e-9,
         classes: list = ['WT', 'TC', 'ET']) -> np.ndarray:
+    """Calculate the sensitivity for per classes.
+
+    Args:
+        probabilities (torch.Tensor): Predicted image.
+        truth (torch.Tensor): The real image.
+        eps (float, optional): Prevent divisor 0. Defaults to 1e-9.
+        classes (list, optional): [description]. Defaults to ['WT', 'TC', 'ET'].
+
+    Returns:
+        np.ndarray: Return sensitivity score.
+    """
     scores = {key: list() for key in classes}
     num_classes = probabilities.shape[0]
     predictions = probabilities
@@ -82,6 +114,17 @@ def specificity_metric_per_classes(
         truth: np.ndarray,
         eps: float = 1e-9,
         classes: list = ['WT', 'TC', 'ET']) -> np.ndarray:
+    """Calculate the specificity for per classes.
+
+    Args:
+        probabilities (torch.Tensor): Predicted image.
+        truth (torch.Tensor): The real image.
+        eps (float, optional): Prevent divisor 0. Defaults to 1e-9.
+        classes (list, optional): [description]. Defaults to ['WT', 'TC', 'ET'].
+
+    Returns:
+        np.ndarray: Return specificity score.
+    """
     scores = {key: list() for key in classes}
     num_classes = probabilities.shape[0]
     predictions = probabilities
@@ -93,7 +136,6 @@ def specificity_metric_per_classes(
         tp = l_and(prediction, truth_).sum()
         tn = l_and(l_not(prediction), l_not(truth_)).sum()
         fp = l_and(prediction, l_not(truth_)).sum()
-        #fn = np.sum(l_and(l_not(prediction), truth_))
         if truth_.sum() == 0 and prediction.sum() == 0:
             scores[classes[class_]].append(tn / (tn + fp))
         else:
@@ -106,6 +148,17 @@ def hausdorff_95_per_classes(probabilities: np.ndarray,
                              truth: np.ndarray,
                              eps: float = 1e-9,
                              classes: list = ['WT', 'TC', 'ET']) -> np.ndarray:
+    """Calculate the hausdorff_95 for per classes.
+
+    Args:
+        probabilities (torch.Tensor): Predicted image.
+        truth (torch.Tensor): The real image.
+        eps (float, optional): Prevent divisor 0. Defaults to 1e-9.
+        classes (list, optional): [description]. Defaults to ['WT', 'TC', 'ET'].
+
+    Returns:
+        np.ndarray: Return hausdorff_95 score.
+    """
     scores = {key: list() for key in classes}
     num_classes = probabilities.shape[0]
     predictions = probabilities

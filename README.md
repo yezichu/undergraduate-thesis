@@ -20,7 +20,7 @@ data_path = 'your-Path_to'
 
 运行`src/inference.py`，将图片还原，
 
-# Inference
+# Test
 
 运行`src/test.py`，进行测试。
 

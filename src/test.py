@@ -97,9 +97,7 @@ with torch.no_grad():
             OneWT = np.zeros([180, 180, 180], dtype=np.uint8)
             OneTC = np.zeros([180, 180, 180], dtype=np.uint8)
             OneET = np.zeros([180, 180, 180], dtype=np.uint8)
-            # 创建三个全黑的三维矩阵，分别用于真实的WT、TC、ET分块的拼接
             for i in range(27):
-                #output=predicts[i]
                 image = predicts[i]
                 image = image.squeeze(0)
                 for idz in range(10, image.shape[1] - 10):
